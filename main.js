@@ -1,22 +1,25 @@
 $(document).ready(function() {
-	var editor = $('<input type="text" id="editor" autofocus>');
+	var editor = $('<textarea id="editor" autofocus style="resize:none">');
+
+	var getEditableCss = function(element) {
+		var newHeight = element.height();
+		var newWidth = element.width();
+		var newPos = element.position();
+		return {newHeight:newHeight, newWidth:newWidth, newPos:newPos};
+	};
 
 	var edit = function() {
 		var cssObj = getEditableCss($(this));
-		console.log(cssObj);
 		$(this).after(editor);
 		$(editor).width(cssObj.newWidth).height(cssObj.newHeight).position(cssObj.newPos);
-		$(editor).focus();
-		$(this).addClass('editing');
-		$(this).hide();
+		$(editor).val($(this).text()).focus();
+		$(this).addClass('editing').hide();
 	};
 
 	var removeEditor = function() {
-		$('#editor').val("");
-		$('#editor').remove();
-		$('.editing').show();
-		$('.editing').removeClass('editing')
-	}
+		$('#editor').val("").remove();
+		$('.editing').show().removeClass('editing');
+	};
 
 	var writeText = function() {	
 		if ($('#editor').val()) {
@@ -28,15 +31,7 @@ $(document).ready(function() {
 		}
 	};
 
-	var getEditableCss = function(element) {
-		var newHeight = element.height();
-		var newWidth = element.width();
-		var newPos = element.position();
-		return {newHeight:newHeight, newWidth:newWidth, newPos:newPos};
-	}
-
 	$('.editable').click(edit);
 	$(document).on('blur','#editor',writeText);
-
-
+	
 });
