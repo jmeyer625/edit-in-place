@@ -1,0 +1,33 @@
+body {
+	font-family: 'helvetica';
+}
+
+.container {
+	max-width: 960px;
+	margin: auto;
+	background-color: #CCC;
+	padding: 30px;
+}
+
+.box {
+	padding: 10px 20px;
+	box-shadow: 5px 5px gray;
+	border-radius: 10px;
+	margin: 10px 10px;
+}
+
+.headline {
+	background-color: #FCB614;
+}
+
+.summary {
+	display: inline-block;
+}
+
+.details {
+	background-color: #009A57;
+}
+
+#main-picture {
+	width: 250px;
+}
